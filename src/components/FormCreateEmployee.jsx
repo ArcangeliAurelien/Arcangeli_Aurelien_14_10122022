@@ -8,7 +8,7 @@ export default function FormCreateEmployee() {
     const [startDate, setStartDate] = useState(new Date())
 
     return (
-        <div>
+        <div className="form">
             <form>
                 <label htmlFor="first-name">First Name</label>
                 <input type="text" id="first-name" required />

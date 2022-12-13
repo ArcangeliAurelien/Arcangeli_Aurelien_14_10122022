@@ -12,7 +12,7 @@
   justify-content: center;
 }
 
-label {
+.form label {
   display: block;
   margin-top: 1rem;
   margin-bottom: 10px;
@@ -22,7 +22,7 @@ label {
   margin-top: 10px;
 }
 
-select {
+#state, #department {
   text-align: left;
   white-space: nowrap;
   width: 14em;
