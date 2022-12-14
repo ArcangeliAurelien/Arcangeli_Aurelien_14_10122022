@@ -27,3 +27,7 @@
   white-space: nowrap;
   width: 14em;
 }
+
+.button {
+  margin-top: 10px;
+}

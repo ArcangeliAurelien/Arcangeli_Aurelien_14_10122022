@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { states } from "../datas/data";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Modal from "./Modal";
 
 export default function FormCreateEmployee() {
     const [birthDate, setBirthDate] = useState()
@@ -62,7 +63,7 @@ export default function FormCreateEmployee() {
                 </select>
             </form>
 
-            <button >Save</button>
+            <Modal />
         </div>
     )
 }
