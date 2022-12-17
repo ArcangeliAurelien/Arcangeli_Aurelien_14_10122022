@@ -2,7 +2,7 @@ import React from "react";
 import { states } from "../datas/data";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Modal from "./Modal";
+// import Modal from "./Modal";
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
 import * as yup from "yup";
@@ -15,8 +15,8 @@ const schema = yup.object({
     StartDate: yup.date().required(),
     Street: yup.string().required(),
     City: yup.string().required(),
-    ZipCode: yup.number().required(),
-}).required()
+    ZipCode: yup.number().min(5).required(),
+})
 
 export default function FormCreateEmployee() {
     const optionsDepartment = [
@@ -38,7 +38,7 @@ export default function FormCreateEmployee() {
     const onSubmit = data => {
         console.log(data);
         console.log("validé!!!");
-        <Modal />  
+        // <Modal />
         reset()
     }
 
@@ -46,36 +46,22 @@ export default function FormCreateEmployee() {
         <div className="form">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label htmlFor="FirstName">First Name</label>
-                <Controller
-                    control={control}
+                <input
+                    type="text"
                     name="FirstName"
-                    render={({ field: { onChange, value } }) => (
-                        <input
-                            type="text"
-                            {...register("First-Name")}
-                            id="FirstName"
-                            value={value}
-                            onChange={onChange}         
-                        />
-                    )}
+                    {...register("FirstName")}
+                    id="FirstName"
                 />
-                <div className="error">{errors.FirstName?.message}</div>
+                {errors.FirstName && (<div className="error">Prénom requis</div>)}
 
                 <label htmlFor="LastName">Last Name</label>
-                <Controller
-                    control={control}
+                <input
+                    type="text"
                     name="LastName"
-                    render={({ field: { onChange, value } }) => (
-                        <input
-                            type="text"
-                            {...register("Last-Name")}
-                            id="LastName"
-                            value={value}
-                            onChange={onChange}
-                        />
-                    )}
+                    {...register("LastName")}
+                    id="LastName"
                 />
-                <div className="error">{errors.LastName?.message}</div>
+                {errors.LastName && (<div className="error">Nom requis</div>)}
 
                 <label htmlFor="Birthday">Date of Birth</label>
                 <Controller
@@ -93,7 +79,7 @@ export default function FormCreateEmployee() {
                         />
                     )}
                 />
-                <div className="error">{errors.Birthday?.message}</div>
+                {errors.Birthday && (<div className="error">Date anniversaire requis</div>)}
 
                 <label htmlFor="StartDate">Start Date</label>
                 <Controller
@@ -112,42 +98,27 @@ export default function FormCreateEmployee() {
                         />
                     )}
                 />
-                <div className="error">{errors.StartDate?.message}</div>
 
                 <fieldset className="address">
                     <legend>Address</legend>
 
                     <label htmlFor="Street">Street</label>
-                    <Controller
-                        control={control}
+                    <input
+                        type="text"
                         name="Street"
-                        render={({ field: { onChange, value } }) => (
-                            <input
-                                type="text"
-                                {...register("Street")}
-                                id="Street"
-                                value={value}
-                                onChange={onChange}
-                            />
-                        )}
+                        {...register("Street")}
+                        id="Street"
                     />
-                    <div className="error">{errors.Street?.message}</div>
+                    {errors.Street && (<div className="errors">Adresse requis</div>)}
 
                     <label htmlFor="City">City</label>
-                    <Controller
-                        control={control}
+                    <input
+                        type="text"
                         name="City"
-                        render={({ field: { onChange, value } }) => (
-                            <input
-                                type="text"
-                                {...register("City")}
-                                id="City"
-                                value={value}
-                                onChange={onChange}
-                            />
-                        )}
+                        {...register("City")}
+                        id="City"
                     />
-                    <div className="error">{errors.City?.message}</div>
+                    {errors.City && (<div className="errors">Ville requis</div>)}
 
                     <label htmlFor="State">State</label>
                     <Controller
@@ -165,20 +136,13 @@ export default function FormCreateEmployee() {
                     />
 
                     <label htmlFor="zipode">Zip Code</label>
-                    <Controller
-                        control={control}
+                    <input
+                        type="number"
                         name="ZipCode"
-                        render={({ field: { onChange, value } }) => (
-                            <input
-                                type="number"
-                                {...register("ZipCode")}
-                                id="ZipCode"
-                                value={value}
-                                onChange={onChange}
-                            />
-                        )}
+                        {...register("ZipCode")}
+                        id="ZipCode"
                     />
-                    <div className="error">{errors.ZipCode?.message}</div>
+                    {errors.ZipCode && (<div>Code postal requis</div>)}
                 </fieldset>
 
                 <label htmlFor="Department">Department</label>
