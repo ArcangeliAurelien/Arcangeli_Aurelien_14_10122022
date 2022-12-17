@@ -11,8 +11,6 @@ export default function Modal() {
 
     return (
         <>
-            <button className="button" onClick={toggleModal}>Save</button>
-
             {modal && (
                 <div>
                     <div className="modal">
