@@ -1,12 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import { states } from "../datas/data";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-// import Modal from "./Modal";
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
 import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
+//import { ModalAA } from 'modal-component-lib-aa';
 
 const schema = yup.object({
     FirstName: yup.string().required(),
@@ -19,6 +19,12 @@ const schema = yup.object({
 })
 
 export default function FormCreateEmployee() {
+    // const [modal, setModal] = useState(false)
+
+    // const toggleModal = () => {
+    //     setModal(!modal)
+    // }
+
     const optionsDepartment = [
         { value: 'sales', label: 'Sales' },
         { value: 'marketing', label: 'Marketing' },
@@ -34,11 +40,15 @@ export default function FormCreateEmployee() {
     const { register, handleSubmit, control, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema)
     })
+
+    const addEmployee = []
     
     const onSubmit = data => {
         console.log(data);
         console.log("validé!!!");
-        // <Modal />
+        addEmployee.push(data)
+        console.log(addEmployee);
+        //<ModalAA />
         reset()
     }
 
@@ -109,7 +119,7 @@ export default function FormCreateEmployee() {
                         {...register("Street")}
                         id="Street"
                     />
-                    {errors.Street && (<div className="errors">Adresse requis</div>)}
+                    {errors.Street && (<div className="error">Adresse requis</div>)}
 
                     <label htmlFor="City">City</label>
                     <input
@@ -118,7 +128,7 @@ export default function FormCreateEmployee() {
                         {...register("City")}
                         id="City"
                     />
-                    {errors.City && (<div className="errors">Ville requis</div>)}
+                    {errors.City && (<div className="error">Ville requis</div>)}
 
                     <label htmlFor="State">State</label>
                     <Controller
@@ -142,7 +152,7 @@ export default function FormCreateEmployee() {
                         {...register("ZipCode")}
                         id="ZipCode"
                     />
-                    {errors.ZipCode && (<div>Code postal requis</div>)}
+                    {errors.ZipCode && (<div className="error">Code postal requis</div>)}
                 </fieldset>
 
                 <label htmlFor="Department">Department</label>
