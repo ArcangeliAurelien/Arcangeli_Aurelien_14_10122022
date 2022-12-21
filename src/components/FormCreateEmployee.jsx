@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { states } from "../datas/data";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -41,13 +41,37 @@ export default function FormCreateEmployee() {
         resolver: yupResolver(schema)
     })
 
-    const addEmployee = []
+    const firstName = document.getElementById('FirstName');
+    const lastName = document.getElementById('LastName');
+    const dateOfBirth = document.getElementById('Birthday');
+    const startDate = document.getElementById('StartDate');
+    const department = document.getElementById('Department');
+    const street = document.getElementById('Street');
+    const city = document.getElementById('City');
+    const state = document.getElementById('State');
+    const zipCode = document.getElementById('ZipCode');
+
+    //const [data, setData] = useState([])
+    //console.log("data", data);
     
-    const onSubmit = data => {
-        console.log(data);
-        console.log("validé!!!");
-        addEmployee.push(data)
-        console.log(addEmployee);
+    const onSubmit = (d) => {
+        //setData([...data, d])
+        //console.log(data)
+        const employees = JSON.parse(localStorage.getItem('employees')) || [];
+        const employee = {
+            firstName: firstName.value,
+            lastName: lastName.value,
+            dateOfBirth: dateOfBirth.value,
+            startDate: startDate.value,
+            department: department.value,
+            street: street.value,
+            city: city.value,
+            state: state.value,
+            zipCode: zipCode.value
+        };
+        employees.push(employee);
+        localStorage.setItem('employees', JSON.stringify(employees))
+        console.log(JSON.parse(localStorage.getItem('employees')))
         //<ModalAA />
         reset()
     }

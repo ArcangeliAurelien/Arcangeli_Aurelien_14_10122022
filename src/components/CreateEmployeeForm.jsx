@@ -16,7 +16,7 @@ const optionsState = states.map((state, index) => (
     { key: index, value: state.name, label: state.name }
 ))
 
-export default function CreateEmployeeForm(props) {
+export default function CreateEmployeeForm() {
     const [FirstName, setFirstName] = useState('')
     const [LastName, setLastName] = useState('')
     const [Birthday, setBirthday] = useState('')
@@ -28,8 +28,7 @@ export default function CreateEmployeeForm(props) {
     const [Department, setDepartment] = useState(optionsDepartment[0])
 
     const [data, setData] = useState([])
-
-    console.log(data);
+    console.log("data", data);
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -71,6 +70,7 @@ export default function CreateEmployeeForm(props) {
                   id="FirstName"
                   value={FirstName}
                   onChange={(e) => setFirstName(e.target.value)}
+                  required
               />
               
               <label htmlFor='LastName'>LastName</label>
@@ -80,6 +80,7 @@ export default function CreateEmployeeForm(props) {
                   id="LastName"
                   value={LastName}
                   onChange={(e) => setLastName(e.target.value)}
+                  required
               />
               
               <label htmlFor='Birthday'>Date of Birth</label>
@@ -90,6 +91,7 @@ export default function CreateEmployeeForm(props) {
                   value={Birthday}
                   dateFormat="dd/MM/yyyy"
                   onChange={(e) => setBirthday(e)}
+                  required
               />
 
               <label htmlFor='StartDate'>Start Date</label>
@@ -100,6 +102,7 @@ export default function CreateEmployeeForm(props) {
                   value={StartDate}
                   dateFormat="dd/MM/yyyy"
                   onChange={(e) => setStartDate(e)}
+                  required
               />
 
               <fieldset className='address'>
@@ -112,6 +115,7 @@ export default function CreateEmployeeForm(props) {
                       id="Street"
                       value={Street}
                       onChange={(e) => setStreet(e.target.value)}
+                      required
                   />
 
                   <label htmlFor='City'>City</label>
@@ -121,6 +125,7 @@ export default function CreateEmployeeForm(props) {
                       id="City"
                       value={City}
                       onChange={(e) => setCity(e.target.value)}
+                      required
                   />
 
                   <label htmlFor='State'>State</label>
@@ -130,6 +135,7 @@ export default function CreateEmployeeForm(props) {
                       value={State}
                       options={optionsState}
                       onChange={(e) => setState(e)}
+                      required
                   />
 
                   <label htmlFor='ZipCode'>Zip Code</label>
@@ -139,6 +145,7 @@ export default function CreateEmployeeForm(props) {
                       name="ZipCode"
                       value={ZipCode}
                       onChange={(e) => setZipCode(e.target.value)}
+                      required
                   />
               </fieldset>
 
@@ -149,6 +156,7 @@ export default function CreateEmployeeForm(props) {
                   value={Department}
                   options={optionsDepartment}
                   onChange={(e) => setDepartment(e)}
+                  required
               />
 
               <button type='submit' className="button">Save</button>
