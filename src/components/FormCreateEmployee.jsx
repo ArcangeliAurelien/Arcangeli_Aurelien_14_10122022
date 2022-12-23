@@ -1,84 +1,36 @@
-import React, { useState } from "react";
-import { states } from "../datas/data";
+import React from "react";
+import { schema, optionsState, optionsDepartment } from "../datas/data";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
-import * as yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from "react-redux";
+import { addEmployee } from "../redux/reducers/CreateEmployeeSlice";
 //import { ModalAA } from 'modal-component-lib-aa';
 
-const schema = yup.object({
-    FirstName: yup.string().required(),
-    LastName: yup.string().required(),
-    Birthday: yup.date().required(),
-    StartDate: yup.date().required(),
-    Street: yup.string().required(),
-    City: yup.string().required(),
-    ZipCode: yup.number().min(5).required(),
-})
-
 export default function FormCreateEmployee() {
-    // const [modal, setModal] = useState(false)
+    const dispatch = useDispatch()
 
+    // const [modal, setModal] = useState(false)
+    
     // const toggleModal = () => {
     //     setModal(!modal)
     // }
 
-    const optionsDepartment = [
-        { value: 'sales', label: 'Sales' },
-        { value: 'marketing', label: 'Marketing' },
-        { value: 'engineering', label: 'Engineering' },
-        { value: 'human-resources', label: 'Human Resources' },
-        { value: 'legal', label: 'Legal' }
-    ]
-
-    const optionsState = states.map((state, index) => (
-        {key: index, value: state.name, label: state.name}
-    ))
-
     const { register, handleSubmit, control, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema)
     })
-
-    const firstName = document.getElementById('FirstName');
-    const lastName = document.getElementById('LastName');
-    const dateOfBirth = document.getElementById('Birthday');
-    const startDate = document.getElementById('StartDate');
-    const department = document.getElementById('Department');
-    const street = document.getElementById('Street');
-    const city = document.getElementById('City');
-    const state = document.getElementById('State');
-    const zipCode = document.getElementById('ZipCode');
-
-    //const [data, setData] = useState([])
-    //console.log("data", data);
     
-    const onSubmit = (d) => {
-        //setData([...data, d])
-        //console.log(data)
-        const employees = JSON.parse(localStorage.getItem('employees')) || [];
-        const employee = {
-            firstName: firstName.value,
-            lastName: lastName.value,
-            dateOfBirth: dateOfBirth.value,
-            startDate: startDate.value,
-            department: department.value,
-            street: street.value,
-            city: city.value,
-            state: state.value,
-            zipCode: zipCode.value
-        };
-        employees.push(employee);
-        localStorage.setItem('employees', JSON.stringify(employees))
-        console.log(JSON.parse(localStorage.getItem('employees')))
-        //<ModalAA />
+    const onSubmit = (data) => {
+        const employees = { ...data }
+        dispatch(addEmployee(employees))
         reset()
     }
 
     return (
         <div className="form">
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} id="create-employee">
                 <label htmlFor="FirstName">First Name</label>
                 <input
                     type="text"

@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import CreateEmployeeSlice from "../redux/reducers/CreateEmployeeSlice"
+import { employeeStateReducer } from "./reducers/CreateEmployeeSlice";
 
 export const store = configureStore({
     reducer: {
-        employees: CreateEmployeeSlice
-    }
+        employees: employeeStateReducer,
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false })
 })

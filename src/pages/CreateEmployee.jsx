@@ -12,7 +12,6 @@ export default function CreateEmployee() {
             <div className="container">
                 <Link to={'/employees-list'}>View Current Employees</Link>
                 <h2>Create Employee</h2>
-                {/* <CreateEmployeeForm /> */}
                 <FormCreateEmployee />
             </div>
         </div>

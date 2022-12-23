@@ -1,3 +1,5 @@
+import * as yup from "yup";
+
 export const states = [
     {
         "name": "Alabama",
@@ -236,3 +238,25 @@ export const states = [
         "abbreviation": "WY"
     }
 ]
+
+export const schema = yup.object({
+    FirstName: yup.string().required(),
+    LastName: yup.string().required(),
+    Birthday: yup.date().required(),
+    StartDate: yup.date().required(),
+    Street: yup.string().required(),
+    City: yup.string().required(),
+    ZipCode: yup.number().min(5).required(),
+})
+
+export const optionsDepartment = [
+    { value: 'sales', label: 'Sales' },
+    { value: 'marketing', label: 'Marketing' },
+    { value: 'engineering', label: 'Engineering' },
+    { value: 'human-resources', label: 'Human Resources' },
+    { value: 'legal', label: 'Legal' }
+]
+
+export const optionsState = states.map((state, index) => (
+    { key: index, value: state.name, label: state.name }
+))

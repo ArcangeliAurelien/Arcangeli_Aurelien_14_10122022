@@ -1,14 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+    employees: []
+}
+
 const CreateEmployeeSlice = createSlice({
     name: "employees",
-    initialState: [],
+    initialState,
     reducers: {
-        addEmployee(state, action) {
-            state.push.action.payload
+        addEmployee: (state, action) => {
+            console.log(action.payload);
+            state.employees.push(action.payload)
         }
     }
 })
 
-const { actions, reducer } = CreateEmployeeSlice
-export default reducer
+export const { addEmployee } = CreateEmployeeSlice.actions
+export const employeeStateReducer = CreateEmployeeSlice.reducer
