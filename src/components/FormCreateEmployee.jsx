@@ -49,10 +49,10 @@ export default function FormCreateEmployee() {
                 />
                 {errors.LastName && (<div className="error">Nom requis</div>)}
 
-                <label htmlFor="Birthday">Date of Birth</label>
+                <label htmlFor="DateOfBirth">Date of Birth</label>
                 <Controller
                     control={control}
-                    name="Birthday"
+                    name="DateOfBirth"
                     render={({
                         field: { onChange, value, ref },
                     }) => (
@@ -61,11 +61,11 @@ export default function FormCreateEmployee() {
                             selected={value}
                             inputRef={ref}
                             dateFormat="dd/MM/yyyy"
-                            id="Birthday"
+                            id="DateOfBirth"
                         />
                     )}
                 />
-                {errors.Birthday && (<div className="error">Date anniversaire requis</div>)}
+                {errors.DateOfBirth && (<div className="error">Date anniversaire requis</div>)}
 
                 <label htmlFor="StartDate">Start Date</label>
                 <Controller

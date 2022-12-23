@@ -10,7 +10,10 @@ const CreateEmployeeSlice = createSlice({
     reducers: {
         addEmployee: (state, action) => {
             console.log(action.payload);
-            state.employees.push(action.payload)
+            state.employees = [
+                ...state.employees,
+                {...action.payload}
+            ]
         }
     }
 })

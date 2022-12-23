@@ -242,7 +242,7 @@ export const states = [
 export const schema = yup.object({
     FirstName: yup.string().required(),
     LastName: yup.string().required(),
-    Birthday: yup.date().required(),
+    DateOfBirth: yup.date().required(),
     StartDate: yup.date().required(),
     Street: yup.string().required(),
     City: yup.string().required(),
@@ -258,5 +258,5 @@ export const optionsDepartment = [
 ]
 
 export const optionsState = states.map((state, index) => (
-    { key: index, value: state.name, label: state.name }
+    { key: index, value: state.abbreviation, label: state.name }
 ))
