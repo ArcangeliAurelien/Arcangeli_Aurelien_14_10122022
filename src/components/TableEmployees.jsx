@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { useSelector } from 'react-redux';
 
 // const rows = [
@@ -45,7 +45,21 @@ export default function TableEmployees() {
 
   return (
     <div style={{ height: 500, width: '100%' }}>
-      <DataGrid rows={addRow} columns={columns} rowsPerPageOptions={[10, 25, 50, 100]} />
+      <DataGrid
+        rows={addRow}
+        columns={columns}
+        rowsPerPageOptions={[10, 25, 50, 100]}
+        disableColumnFilter
+        disableColumnSelector
+        disableDensitySelector
+        components={{ Toolbar: GridToolbar }}
+        componentsProps={{
+          toolbar: {
+            showQuickFilter: true,
+            quickFilterProps: { debounceMs: 500 }
+          }
+        }}
+      />
     </div>
   )
 }
