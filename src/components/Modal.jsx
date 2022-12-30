@@ -1,28 +1,18 @@
-import React, { useState } from "react";
-import "../styles/Modal.css";
-import "../styles/App.css";
+import React from 'react'
+import "../styles/Modal.css"
 
-export default function Modal() {
-    const [modal, setModal] = useState(false)
-
-    const toggleModal = () => {
-        setModal(!modal)
-    }
+export default function Modal({ setOpenModal, modalStyle, messageStyle, message, closeModalStyle }) {
 
     return (
         <>
-            {modal && (
-                <div>
-                    <div className="modal">
-                        <div className="overlay">
-                            <div className="modal-content">
-                                Employee Created !
-                                <button className="close-modal" onClick={toggleModal}>✖</button>
-                            </div>
-                        </div>
+            <div className="modal">
+                <div className="overlay">
+                    <div className="modal-content" style={modalStyle}>
+                        <div style={messageStyle}>{message}</div>
+                        <button className="close-modal" style={closeModalStyle} onClick={() => setOpenModal(false)}>✖</button>
                     </div>
                 </div>
-            )}
+            </div>
         </>
     )
 }

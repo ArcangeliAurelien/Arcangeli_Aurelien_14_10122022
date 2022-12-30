@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { schema, optionsState, optionsDepartment } from "../datas/data";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,24 +7,22 @@ import Select from "react-select";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from "react-redux";
 import { addEmployee } from "../redux/reducers/CreateEmployeeSlice";
-//import { ModalAA } from 'modal-component-lib-aa';
+//import ModalAA from "modal-component-lib-aa";
+import Modal from "./Modal";
 
 export default function FormCreateEmployee() {
     const dispatch = useDispatch()
 
-    // const [modal, setModal] = useState(false)
-    
-    // const toggleModal = () => {
-    //     setModal(!modal)
-    // }
-
     const { register, handleSubmit, control, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema)
     })
+
+    const [openModal, setOpenModal] = useState(false)
     
     const onSubmit = (data) => {
         const employees = { ...data }
         dispatch(addEmployee(employees))
+        setOpenModal(!openModal)
         reset()
     }
 
@@ -84,6 +82,7 @@ export default function FormCreateEmployee() {
                         />
                     )}
                 />
+                {errors.StartDate && (<div className="error">Date de début de contrat requis</div>)}
 
                 <fieldset className="address">
                     <legend>Address</legend>
@@ -147,8 +146,14 @@ export default function FormCreateEmployee() {
                 />
                     
                 <button type="submit" className="button">Save</button>
-
             </form>
+
+            {openModal && <Modal
+                openModal={openModal}
+                setOpenModal={setOpenModal}
+                message="Employee created !"
+            />}
+
         </div>
     )
 }

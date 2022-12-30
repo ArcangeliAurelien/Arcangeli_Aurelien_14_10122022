@@ -240,13 +240,13 @@ export const states = [
 ]
 
 export const schema = yup.object({
-    FirstName: yup.string().required(),
-    LastName: yup.string().required(),
+    FirstName: yup.string().min(3, "Prénom trop court").max(20, "Prénom trop long").required(),
+    LastName: yup.string().min(3, "Nom trop court").max(20, "Nom trop long").required(),
     DateOfBirth: yup.date().required(),
     StartDate: yup.date().required(),
-    Street: yup.string().required(),
-    City: yup.string().required(),
-    ZipCode: yup.number().min(5).required(),
+    Street: yup.string().min(3).required(),
+    City: yup.string().min(3).required(),
+    ZipCode: yup.number().min(5).integer().required(),
 })
 
 export const optionsDepartment = [

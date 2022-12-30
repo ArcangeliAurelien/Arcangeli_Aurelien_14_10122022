@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-//import CreateEmployeeForm from "../components/CreateEmployeeForm";
 import FormCreateEmployee from "../components/FormCreateEmployee";
 
 export default function CreateEmployee() {
