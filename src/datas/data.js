@@ -246,7 +246,7 @@ export const schema = yup.object({
     StartDate: yup.date().required(),
     Street: yup.string().min(3).required(),
     City: yup.string().min(3).required(),
-    ZipCode: yup.number().min(5).integer().required(),
+    ZipCode: yup.string().min(5, "5 chiffres minimum").max(5, "5 chiffres maximum").matches(/^[0-9]+$/, "Seulement les chiffres sont autorisé").required(),
 })
 
 export const optionsDepartment = [

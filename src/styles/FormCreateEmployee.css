@@ -1,0 +1,31 @@
+input {
+    height: 38px;
+    width: 250px;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    padding-left: 10px;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.8);
+}
+input:focus {
+    outline: none !important;
+    border: 2px solid rgb(80, 137, 80);
+}
+input:hover {
+    border: 2px solid rgb(80, 137, 80);
+}
+
+.formInput {
+    display: flex;
+    gap: 20px;
+}
+
+fieldset {
+    border: 2px solid rgb(80, 137, 80);
+}
+
+@media (max-width: 630px) {
+    .formInput {
+        flex-direction: column;
+    }
+}
