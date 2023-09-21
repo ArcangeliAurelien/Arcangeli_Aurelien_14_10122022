@@ -26,9 +26,9 @@ export default function FormCreateEmployee() {
         reset()
     }
 
-    // const messageStyle = {
-    //     "color" : "red"
-    // }
+    const messageStyle = {
+        "color" : "red"
+    }
 
     const InputSelectCustom = {
         control: (styles, state) => ({
@@ -193,7 +193,7 @@ export default function FormCreateEmployee() {
                 openModal={openModal}
                 setOpenModal={setOpenModal}
                 message="Employee created !"
-                //messageStyle={messageStyle}
+                messageStyle={messageStyle}
             />}
 
         </div>
