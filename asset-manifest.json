@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ArcangeliAurelien_14_10122022/static/css/main.cae8f0fd.css",
+    "main.js": "/ArcangeliAurelien_14_10122022/static/js/main.797b8eeb.js",
+    "index.html": "/ArcangeliAurelien_14_10122022/index.html",
+    "main.cae8f0fd.css.map": "/ArcangeliAurelien_14_10122022/static/css/main.cae8f0fd.css.map",
+    "main.797b8eeb.js.map": "/ArcangeliAurelien_14_10122022/static/js/main.797b8eeb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cae8f0fd.css",
+    "static/js/main.797b8eeb.js"
+  ]
+}
